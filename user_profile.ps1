@@ -2,9 +2,6 @@
 Import-Module posh-git
 Import-Module z
 
-# Theme
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\ys.omp.json" | Invoke-Expression
-
 # Icons
 Import-Module -Name Terminal-Icons
 
@@ -37,3 +34,9 @@ function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
     Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
+
+# Starship
+Invoke-Expression (&starship init powershell)
+$ENV:STARSHIP_CONFIG = "$HOME\.config\starship\starship.toml"
+$ENV:STARSHIP_CACHE = "$HOME\AppData\Local\Temp\starship"
+
